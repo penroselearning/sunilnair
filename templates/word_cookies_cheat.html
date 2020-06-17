@@ -1,0 +1,64 @@
+
+
+{% extends "base.html" %} {% block content %}
+<style>
+    form input[name="letters"] {
+        padding: 1%;
+        border-style: none;
+        /* border: grey 1px solid; */
+        border-radius: 5px;
+    }
+    form input[name="letters"]::after {
+        border: grey 1px solid;
+    }
+    form input[type="submit"] {
+        padding: 15px;
+        width: 15%;
+        transition: 0.5s;
+        font-weight: bolder;
+        background: #2048a3;
+        color: white;
+        border-style: none;
+        border-radius: 15px;
+    }
+    form input[type="submit"]:hover {
+        border-style: none;
+        border-radius: 15px;
+        background: rgb(255, 174, 0);
+        color: black;
+        font-weight: bolder;
+    }
+</style>
+<div align="center">
+    <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;letter-spacing: 1.5px;">Enter your Letters</h3>
+    <form method="post" action="/word_cookies_cheat">
+        <p><input name="letters" /></p>
+        <p><input type="submit" value="List Words" style="width:125px" /></p>
+    </form>
+    {{ error_msg }}
+
+
+{% if solution!="" %}
+
+    {% for c,words in solution[1][0].items() %}
+    
+    <h4>{{ c }} letter words</h4>
+    
+    {% set items = words | length %}
+
+    {% for x in range(items) %}
+    
+    <span>
+        {% if x == items - 1 %}
+        {{ words[x] }}
+        {% else %}
+        {{ words[x] }},
+        {% endif %}
+    </span>
+    {% endfor %}
+    {% endfor %}
+
+    {% endif %}
+</div>
+
+{% endblock %}

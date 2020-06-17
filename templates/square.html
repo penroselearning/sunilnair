@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+    {% block content %}
+
+<h3>Calculate the Square of a Number</h3>
+<form method="post" action="/square">
+    <p><input name="number"/></p>
+    <p><input type="submit" value="Find the Square" /></p>
+</form>
+{{ error_msg }}
+{{ solution }}
+{% endblock %}

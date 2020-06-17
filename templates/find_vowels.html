@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div align="center">
+
+<form method="post" action="/find_vowels">
+    <label for="word">Enter a Word:</label>
+    <input type="text" id="text" name="text">
+    <input type="submit" value="Show Vowel Count">
+    
+</form>
+{{ error_msg }}
+<br/>
+
+{% for v,l in solution.items() %}
+{{ v }}  :  {{ l }}
+<br/>
+{% endfor %}
+
+<br/>
+
+<hr/>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+    {% block content %}
+
+<div align="center">
+<table>
+<form method="post" action="/convert_to_seconds">
+    
+    <tr>
+    <td><input type="number" id="years" name="years" style="width: 7em"></td>
+    <td><label for="years">Years</label></td>
+    </tr>
+    
+    <tr>
+    <td><input type="number" id="months" name="months" style="width: 7em"></td>
+    <td><label for="months">Months</label></td>
+    </tr>
+
+    <tr>
+    <td><input type="number" id="weeks" name="weeks" style="width: 7em"></td>
+    <td><label for="weeks">Weeks</label></td>
+    </tr>
+
+    <tr>
+    <td><input type="number" id="days" name="days" style="width: 7em"></td>
+    <td><label for="days">Days</label></td>
+    </tr>
+
+    <tr>
+    <td><input type="number" id="hours" name="hours" style="width: 7em"></td>
+    <td><label for="hours">Hours</label></td>
+    </tr>
+
+    <tr>
+    <td><input type="number" id="minutes" name="minutes" style="width: 7em"></td>
+    <td><label for="minutes">Minutes</label></td>
+    </tr>
+    <tr>
+    <td colspan="2"><input type="submit" value="Calculate Seconds"></td>
+    </tr>
+</form>
+</table>
+{{ error_msg }}
+<br/>
+
+{% if solution != '0' %}
+<h4>{{ vals[0] }} year(s), {{ vals[1] }} month(s), {{ vals[2] }} week(s),
+    {{ vals[3] }} day(s), {{ vals[4] }} hour(s), {{ vals[5] }} minute(s) equals</h4>
+<h3>{{ solution }} seconds</h3>
+{% endif %}
+
+<hr/>
+
+</div>
+
+{% endblock %}

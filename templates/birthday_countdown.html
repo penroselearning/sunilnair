@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+    {% block content %}
+
+    <div align="center">
+
+<form method="post" action="/birthday_countdown">
+    <label for="birthday">Select Date:</label>
+    <input type="date" id="date" name="date">
+    <input type="submit" value="Click Me">
+    
+</form>
+{{ error_msg }}
+<br/>
+{% if countdown != None %}
+<h4>There are {{ countdown[0][0] }} day(s) and {{ countdown[0][1] }} hour(s) 
+    to your next birthday</h4> 
+<hr/>
+<h3>Your Next 5 Birthdays</h3>
+
+{% for dt in countdown[1] %}
+{{ dt }}
+<br/>
+{% endfor %}
+
+
+{% endif %}
+<br/>
+
+<hr/>
+
+</div>
+
+{% endblock %}

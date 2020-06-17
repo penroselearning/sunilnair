@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+    {% block content %}
+
+<div align="center">
+
+<form method="post" action="/wild_cats">
+    <label for="cats">Select a Wild Cat</label>
+    <br/>
+
+<select id="cats" name="cats">
+    {% for cat in cats %}
+  <option value="{{cat}}">{{cat}}</option>
+  {% endfor %}
+</select>
+<br/>
+    <input type="submit" value="Show Cat Details">
+    
+</form>
+{{ error_msg }}
+<ul>
+{% if cat != '' %}
+<h3>{{ cat }}</h3>
+<img src="{{cats[cat][5]}}"/>
+<li>Scientific Name: {{cats[cat][0]}}</li>
+<br>
+<li>Regions Found: {{cats[cat][1]}}</li>
+<br>
+<li>Natural Habitat: {{cats[cat][2]}}</li>
+<br>
+<li>Max Length: {{cats[cat][3]}}</li>
+<br>
+<li>Max Height: {{cats[cat][4]}}</li>
+{% endif %}
+</ul>
+
+<br/>
+<hr/>
+
+</div>
+
+{% endblock %}

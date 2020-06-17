@@ -1,0 +1,40 @@
+
+    {% block content %}
+
+    <div align="center">
+    
+    <form method="post" action="/shopping_list">
+        <label for="multiply">Shopping Item</label>
+        <input type="text" id="item" name="item">
+        <input type="submit" value="Add">
+        
+    </form>
+    {{ error_msg }}
+    <br/>
+    
+    {% if cart != '' %}
+        
+    <form method="post" action="/shopping_list">
+        <select id="remove" name="remove">
+        {% for it in cart %}
+          <option value="{{it}}">{{it}}</option>
+        {% endfor %}
+        </select>
+  
+       <input type="submit" value="Remove">
+    </form>
+
+    <ul>
+   {% for item in cart %}
+   <li>{{item}}</li>
+   {% endfor %}
+</ul>
+    {% endif %}
+    
+    <br/>
+    
+    <hr/>
+    
+    </div>
+    
+    {% endblock %}

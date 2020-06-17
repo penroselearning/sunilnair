@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+    {% block content %}
+
+<div align="center">
+
+<form method="post" action="/multiplication_table">
+    <label for="multiply">Enter a Number of your Choice:</label>
+    <input type="number" id="number" name="number">
+    <input type="submit" value="Show Table">
+    
+</form>
+{{ error_msg }}
+<br/>
+
+{% if n!= None %}
+{% for x in range(12) %}
+{{ n }}  x  {{ x+1 }} = {{ n * (x+1) }}
+<br/>
+{% endfor %}
+{% endif %}
+
+<br/>
+
+<hr/>
+
+</div>
+
+{% endblock %}

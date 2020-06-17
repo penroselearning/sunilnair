@@ -1,0 +1,62 @@
+ {% block content %}
+<style>
+    .phase_calculator {
+        padding: 25px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding-left: 15%;
+    }
+    .phase_calculator img {
+        border-radius:100%;
+        width:18%;
+    }
+    .moon_phase_calculator {
+        height: 90vh;
+        background-image: url(https://www.esa.int/extension/pillars/design/pillars/images/nebula.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: fixed;
+        color: white;
+    }
+    form input[type="date"] {
+        padding: 1.5%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border-style: none;
+    }
+    form input[type="submit"] {
+        padding: 2%;
+        border-style: none;
+        color: black;
+        background: none;
+        cursor: pointer;
+        color: white;
+        transition: 0.5s;
+    }
+    form input[type="submit"]:hover {
+        border-radius: 100%;
+        background-image: url(https://image.shutterstock.com/image-illustration/deep-space-high-definition-star-260nw-519356689.jpg);
+    }
+    h2 span {
+        padding-left: 5%;
+        font-style: italic;
+    }
+</style>
+<div class="moon_phase_calculator">
+    <div class="phase_calculator">
+        <h2>Next Full Moon<span>{{ nextfull }}</span></h2>
+        <h2>Next New Moon<span>{{ nextnew }}</span></h2>
+        <form method="post" action="/moon_phase_calculator">
+            <br/>
+            <input type="date" id="date" name="date">
+            <input type="Submit" value="Select Date">
+        </form>
+        {{ error_msg }}
+        <br/>
+        {% if moonphase != "" %}
+    <h3>It's a {{ moonphase[0][0] }} on {{ moonphase[1] }} in the Northern Hemisphere</h3>
+    <br/>
+    <img src="{{ moonphase[0][1] }}"/>
+    {% endif %}
+        <br/>
+    </div>
+    {% endblock %}
