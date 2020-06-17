@@ -3,9 +3,11 @@ import calendar
 import math
 from fractions import Fraction
 
+def square_cube(number):
+    return number**2,number**3
 
-def calc_square(number):
-    return number**2
+def convertor(miles):
+    return round(float(miles * 1.609),2)
 
 def convert_to_seconds(y,mo,w,d,h,m):
   seconds =(m * 60) + (h * 60 * 60) + (d * 24 * 60 * 60) + (w * 7 * 24 * 60 * 60) + (mo * 30 * 7 * 24 * 60 * 60) + (y * 52 * 7 * 24 * 60 * 60)

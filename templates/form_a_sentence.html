@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div align="center">
+
+<form method="post" action="/form_a_sentence">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age">
+
+    <label for="school">School:</label>
+    <input type="text" id="school" name="school">
+
+    <input type="submit" value="Form a Sentence">
+    
+</form>
+{{ error_msg }}
+<br/>
+
+{% if sentence !='' %}
+<p>{{ sentence }}</p>
+{% endif %}
+
+<br/>
+
+</div>
+
+{% endblock %}

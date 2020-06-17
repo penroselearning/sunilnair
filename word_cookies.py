@@ -1,12 +1,5 @@
 
 
-
-def find_vowels(word,vowels):
-    for letter in word:
-        if letter in vowels:
-            vowels[letter] += 1
-    return vowels
-
 def find_words(lettersinput,wordlist):
     
     letters = [letterinput for letterinput in lettersinput]

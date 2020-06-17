@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+    {% block content %}
+
+    <div align="center">
+    
+    {% for cookie,price in menu.items() %}
+    <p>{{cookie}} - {{price}}</p>
+    {% endfor %}
+
+    <form method="post" action="/cookie_cafe">
+
+        <label for="cookie">Place your Order</label>
+        <select id="add" name="add">
+            {% for cookie in menu %}
+              <option value="{{cookie}}">{{cookie}}</option>
+            {% endfor %}
+            </select>
+
+        <input type="number" id="qty" name="qty">
+        <input type="submit" value="Add">
+        
+    </form>
+    {{ error_msg }}
+    <br/>
+    
+    {% if orders != '' %}
+
+    <p>Total Bill: {{b}}</p>
+   {% for cookie,price in orders.items() %}
+   <p>{{cookie}} - USD {{price}}</p>
+   {% endfor %}
+
+    {% endif %}
+    
+    <br/>
+    
+    <hr/>
+    
+    </div>
+    
+    {% endblock %}

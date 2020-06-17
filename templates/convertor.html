@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+    {% block content %}
+
+<h3>Conversion Tool</h3>
+<form method="post" action="/convertor">
+    <p><label for="miles">Enter Miles:</label></p>
+    <p><input type="number" name="miles"/></p>
+    <p><input type="submit" value="Convert to Kilometers" /></p>
+</form>
+{{ error_msg }}
+
+{% if solution != ''%}
+<p><b>Kilometers:</b> {{ solution }}</p>
+{% endif %}
+{% endblock %}

@@ -1,11 +1,15 @@
 {% extends "base.html" %}
     {% block content %}
 
-<h3>Calculate the Square of a Number</h3>
+<h3>Calculate the Square and Cube of a Number</h3>
 <form method="post" action="/square">
-    <p><input name="number"/></p>
-    <p><input type="submit" value="Find the Square" /></p>
+    <p><input type="number" name="number"/></p>
+    <p><input type="submit" value="Calculate" /></p>
 </form>
 {{ error_msg }}
-{{ solution }}
+
+{% if s!=''%}
+<p>Square: {{ s }}</p>
+<p>Cube: {{ c }}</p>
+{% endif %}
 {% endblock %}

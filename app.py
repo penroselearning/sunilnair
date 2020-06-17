@@ -1,11 +1,13 @@
 from flask import Flask,render_template,request
 from flask import session
-from calculation import calc_square,convert_to_seconds,birthday_countdown,aspect_ratio_calculator
-from word_cookies import find_words,find_vowels
+from calculation import square_cube,convertor,convert_to_seconds,birthday_countdown,aspect_ratio_calculator
+from word_cookies import find_words
+from strings import form_sentence,find_vowels
 from wild_cats import wild_cats
 from guessing_game import guessing_game
 from shopping_list import shopping_cart,shopping_cart_remove
 from moon_phase_calculator import converttojulian,datetophase,specificdate,nextphasefm,nextphasenm
+from cookie_cafe import update_order,remove_order
 
 app = Flask(__name__)
 
@@ -17,12 +19,26 @@ def index():
 def about():
     return render_template("about.html")
 
+# String Formatting
+@app.route("/form_a_sentence",methods=["GET", "POST"])
+def formsentence():
+    errors = ""
+    result = ""
+
+    if request.method == "POST":
+        name = request.form["name"]
+        age = request.form["age"]
+        school = request.form["school"]
+
+        result = form_sentence(name,age,school)
+
+    return render_template("form_a_sentence.html",sentence = result, error_msg=errors)
+
 # Numbers
 @app.route("/square",methods=["GET", "POST"])
 def square():
     errors = ""
-    result = ""
-    number = None
+    square,cube = "",""
     if request.method == "POST":
         if request.form["number"] is not None:
             try:
@@ -30,10 +46,24 @@ def square():
             except:
                 errors += f'Please Enter a Number'
             else:
-                result = f'Square of {number} is {calc_square(number)}'
+                square,cube = square_cube(number)
+        
+    return render_template("square.html",s=square,c=cube, error_msg=errors)
+
+@app.route("/convertor",methods=["GET", "POST"])
+def conversion():
+    errors = ""
+    result = ""
+    miles = ""
+    if request.method == "POST":
+        try:
+            miles = float(request.form["miles"])
+        except:
+            errors += f'Please enter a value for miles'
         else:
-            errors += f'Please Enter a Number'
-    return render_template("square.html",solution=result, error_msg=errors)
+            result = convertor(miles)
+    
+    return render_template("convertor.html",solution=result, error_msg=errors)
 
 # For Loop
 @app.route("/multiplication_table",methods=["GET","POST"])
@@ -111,6 +141,29 @@ def findvowels():
             errors += f'Please Enter a Word'
     
     return render_template("find_vowels.html",solution=result, error_msg=errors)
+
+
+@app.route("/cookie_cafe",methods=["GET", "POST"])
+def cookiecafe():
+    result =""
+    errors =""
+    cookie,qty="",""
+    order,bill="",""
+
+    cookies = {'Chocolate Chip': 2,
+               'Peanut Butter': 2.5,
+               'Ginger Bread': 2,
+               'Shortbread': 1.5}
+    
+    if request.method == "POST":
+        cookie = request.form["add"]
+        qty = int(request.form["qty"])
+        
+        order,bill = update_order(cookies,cookie,qty)
+
+    return render_template("cookie_cafe.html",menu=cookies,orders = order,b=bill,error_msg=errors)
+
+
 
 # Combining Lists and Dictionaries
 @app.route("/wild_cats",methods=["GET", "POST"])
