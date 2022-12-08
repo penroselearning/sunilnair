@@ -1,4 +1,4 @@
 Flask==1.1.1
-certifi==2019.6.16
+certifi==2022.12.7
 gunicorn==20.0.4
 pygame==1.9.6
